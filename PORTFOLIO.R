@@ -1,7 +1,7 @@
 R PROGS
 
 
-# ДЛЯ ПОРТФОЛИО - IN DIAMONDS(ggplot2)
+# IN DIAMONDS(ggplot2)
 #проверьте гипотезу о взаимосвязи
 # цены (price) и каратов (carat) бриллиантов
 library(ggplot2)
@@ -104,3 +104,35 @@ df <- diamonds
 hqd <- subset(df, cut == "Ideal" & carat == 0.46)
 fit <- lm(price ~ depth, hqd)
 fit_coef <- fit$coefficients
+
+
+
+
+
+
+
+
+# Построение LOGIT MODEL
+#По имеющимся данным в переменной admit постройте логистическую регрессионную модель,
+#предсказывающую результат поступления по престижности учебного заведения среднего образования
+#(переменная rank, 1 — наиболее престижное, 4 — наименее престижное) и результатов GPA
+#(переменная gpa) с учётом их взаимодействия. Примените эту модель к той части данных,
+#где результат поступления неизвестен.
+#Ответом в задаче будет предсказанное моделью число поступивших из тех,
+#для кого результат поступления был неизвестен. Считаем человека поступившим,
+#когда вероятность его поступления не меньше 0.4.
+
+
+df <- read.csv("data.csv",header = T, stringsAsFactors = T)
+str(df)
+
+fit <- glm(admit ~ rank * gpa,df,family = "binomial")
+df$rank <- factor(df$rank, labels = c("1", "2", "3", "4"))
+df$admit <- factor(df$admit, labels = c("1", "2"))
+
+df$admert <- predict(object = fit,newdata = df, type = "response")
+
+df$prob <- factor(ifelse(df$admert > 0.4,1,0))
+new_DF <- subset(df, is.na(df$admit))
+x <- ifelse(new_DF$admert > 0.4,1,0)
+sum(x)
