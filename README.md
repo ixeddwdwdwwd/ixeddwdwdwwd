@@ -1,8 +1,8 @@
 - 👋 Hi, I’m @ixeddwdwdwwd
 - 👀 I’m interested in R, python <- Ml engineer, Data Analytic
-- 🌱 I’m currently learning R and statistic
+- 🌱 4.5 years work with credits in Uralsib, Zenith Bank, MTS BANK
 - 💞️ I’m looking to collaborate on DS
-- 📫 How to reach me Tg - @ixedwow
+- 📫 How to reach me Tg - @nikmo_nik
 
 <!---
 Tooth <- ToothGrowth
